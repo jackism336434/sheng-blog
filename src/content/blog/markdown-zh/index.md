@@ -1,319 +1,201 @@
 ---
-title: Markdown 语法支持
-publishDate: 2023-07-26 08:00:00
-description: 'Markdown 是一种轻量级的「标记语言」。'
+
+title: ''
+
+publishDate: March 24, 2026
+
+updatedDate: ' 2026'
+
+description: '切片.'
+
 tags:
-  - Markdown
-heroImage: { src: './thumbnail.jpg', color: '#B4C6DA' }
-language: '中文'
----
 
-## 基本语法
+- Python
 
-Markdown 是一种轻量级且易于使用的语法，用于为您的写作设计风格。
+- 切片
 
-### 标题
+language: 'Chinese'
 
-文章内容较多时，可以用标题分段：
-
-```markdown
-# 标题 1
-
-## 标题 2
-
-## 大标题
-
-### 小标题
-```
-
-标题预览会打乱文章的结构，所以在此不展示。
-
-### 粗斜体
-
-```markdown
-_斜体文本_
-
-**粗体文本**
-
-**_粗斜体文本_**
-```
-
-预览：
-
-_斜体文本_
-
-**粗体文本**
-
-**_粗斜体文本_**
-
-### 链接
-
-```markdown
-文字链接 [链接名称](http://链接网址)
-```
-
-预览：
-
-文字链接 [链接名称](http://链接网址)
-
-### 行内代码
-
-```markdown
-这是一条 `单行代码`
-```
-
-预览：
-
-这是一条 `行内代码`
-
-### 代码块
-
-````markdown
-```js
-// calculate fibonacci
-function fibonacci(n) {
-  if (n <= 1) return 1
-  return fibonacci(n - 1) + fibonacci(n - 2)
-}
-```
-````
-
-预览：
-
-```js
-// calculate fibonacci
-function fibonacci(n) {
-  if (n <= 1) return 1
-  return fibonacci(n - 1) + fibonacci(n - 2)
-}
-```
-
-当前使用 shiki 作为代码高亮插件，支持的语言请参考 [shiki / languages](https://shiki.matsu.io/languages.html)。
-
-### 行内公式
-
-```markdown
-这是一条行内公式 $e^{i\pi} + 1 = 0$
-```
-
-预览：
-
-这是一条行内公式 $e^{i\pi} + 1 = 0$
-
-### 公式块
-
-```markdown
-$$
-\hat{f}(\xi) = \int_{-\infty}^{\infty} f(x) e^{-2\pi i x \xi} \, dx
-$$
-```
-
-预览：
-
-$$
-\hat{f}(\xi) = \int_{-\infty}^{\infty} f(x) e^{-2\pi i x \xi} \, dx
-$$
-
-当前使用 KaTeX 作为数学公式插件，支持的语法请参考 [KaTeX Supported Functions](https://katex.org/docs/supported.html)。
-
-#### 图片
-
-```markdown
-![CWorld](https://gravatar.loli.net/avatar/1ffe42aa45a6b1444a786b1f32dfa8aa?s=200)
-```
-
-预览：
-
-![CWorld](https://gravatar.loli.net/avatar/1ffe42aa45a6b1444a786b1f32dfa8aa?s=200)
-
-#### 删除线
-
-```markdown
-~~删除线~~
-```
-
-预览：
-
-~~删除线~~
-
-### 列表
-
-普通无序列表
-
-```markdown
-- 1
-- 2
-- 3
-```
-
-预览：
-
-- 1
-- 2
-- 3
-
-普通有序列表
-
-```markdown
-1. GPT-4
-2. Claude Opus
-3. LLaMa
-```
-
-预览：
-
-1. GPT-4
-2. Claude Opus
-3. LLaMa
-
-列表里可以继续嵌套语法
-
-### 引用
-
-```markdown
-> 枪响，雷鸣，剑起。繁花血景。
-```
-
-预览：
-
-> 枪响，雷鸣，剑起。繁花血景。
-
-引用里也可以继续嵌套语法。
-
-### 换行
-
-markdown 分段落是需要空一行的。
-
-```markdown
-如果不空行
-就会在一段
-
-第一段
-
-第二段
-```
-
-预览：
-
-如果不空行
-就会在一段
-
-第一段
-
-第二段
-
-### 分隔符
-
-如果你有写分割线的习惯，可以新起一行输入三个减号`---` 或者星号 `***`。当前后都有段落时，请空出一行：
-
-```markdown
----
-```
-
-预览：
+heroImage: { src: 'thumbnail.jpg', color: '#9698C1' }
 
 ---
+### 切片介绍
 
-## 高级技巧
+切片是 Python 中**操作列表、字符串、元组**最强大、最优雅的语法，没有之一！先记住一句话：**切片 = 截取序列的一段，语法永远是：`[起始:结束:步长]`**
 
-### 行内 HTML 元素
+### 切片实验
 
-目前只支持部分段内 HTML 元素效果，包括 `<kdb> <b> <i> <em> <sup> <sub> <br>` ，如
+- 实验材料
 
-#### 键位显示
+ 数字列表（索引 0~9） 
+ nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] 
+ 字符串 
+ s = "ABCDEFGHIJ"
 
-```markdown
-使用 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> 重启电脑
+
+1.实验一：基础切片[起始：结束]
+
+``` python
+# 数字列表（索引 0~9）
+nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# 字符串
+s = "ABCDEFGHIJ"
+
+
+print(nums[2:6])
+
+
+
 ```
 
-预览：
+注意：切片遵循左闭右开原则，所以输出为：[2, 3, 4, 5]
 
-使用 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd> 重启电脑
 
-#### 粗斜体
+2.省略起始(结束)
+``` python
 
-```markdown
-<b> Markdown 在此处同样适用，如 _加粗_ </b>
+# 数字列表（索引 0~9）
+nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# 字符串
+s = "ABCDEFGHIJ"
+
+
+print(nums[:5])
+
+print(nums[5:])
+
 ```
 
-预览：
+output:[0, 1, 2, 3, 4]
+						[5, 6, 7, 8, 9]
 
-<b> Markdown 在此处同样适用，如 _加粗_ </b>
+3.带步长的切片
+**规则**
 
-### 其他 HTML 写法
+- 步长 = 每次跳几个元素
+- 默认步长 = 1
+``` python
+print(nums[::2])
 
-#### 折叠块
-
-```markdown
-<details><summary>点击展开</summary>它被隐藏了</details>
+output:[0, 2, 4, 6, 8]
 ```
 
-预览：
 
-<details><summary>点击展开</summary>它被隐藏了</details>
+4.负索引切片（非常实用）
 
-### 表格
+``` python
+#取最后三个元素
 
-```markdown
-| 表头1 | 表头2 |
-| ----- | ----- |
-| 内容1 | 内容2 |
+print(nums[-3:])
+
+output：[7, 8, 9]
+
+
+
 ```
 
-预览：
+5.倒序切片（反转序列）
+`[::-1]` → 直接反转序列！
+``` python
+#从后往前取
+print(nums[8:2:-1])
 
-| 表头1 | 表头2 |
-| ----- | ----- |
-| 内容1 | 内容2 |
-
-### 注释
-
-```markdown
-在引用的地方使用 [^注释] 来添加注释。
-
-然后在文档的结尾，添加注释的内容（会默认于文章结尾渲染之）。
-
-[^注释]: 这里是注释的内容
+output：[8, 7, 6, 5, 4, 3]
 ```
 
-预览：
 
-在引用的地方使用 [^注释] 来添加注释。
+6.复制列表
 
-然后在文档的结尾，添加注释的内容（会默认于文章结尾渲染之）。
 
-[^注释]: 这里是注释的内容
+``` python
 
-### To-Do 列表
+new_nums=nums[:]
 
-```markdown
-- [ ] 未完成的任务
-- [x] 已完成的任务
+new_nums[0]=1111
+
+print(nums)
+
+print(new_nums)
 ```
 
-预览：
+根据输出可以发现：复制的列表完全独立，不影响原列表
 
-- [ ] 未完成的任务
-- [x] 已完成的任务
 
-### 符号转义
+7.清空列表
+```python
 
-如果你的描述中需要用到 markdown 的符号，比如 \_ # \* 等，但又不想它被转义，这时候可以在这些符号前加反斜杠，如 `\_` `\#` `\*` 进行避免。
+nums[:] = [] 
 
-```markdown
-\_不想这里的文本变斜体\_
-
-\*\*不想这里的文本被加粗\*\*
+print(nums) # 变成空列表
 ```
 
-预览：
 
-\_不想这里的文本变斜体\_
+8.替换中间元素
 
-\*\*不想这里的文本被加粗\*\*
 
----
+``` Python
 
-## 内嵌 Astro 组件
+nums = [0,1,2,3,4,5] 
+nums[1:4] = [99, 88] 
+# 把索引1~3替换掉 
+print(nums)
+```
 
-See [User Components](/docs/integrations/components) and [Advanced Components](/docs/integrations/advanced) for details.
+output：[0, 99, 88, 4, 5]
+
+
+### 深入解析切片的底层原理
+
+不知道大家在用切片赋值时有没有这样的疑惑，为什么切片在赋值时，被赋值的对象是一个独立于切片的副本，不影响切片本身的元素，但是我们却能通过赋值给原切片列表去修改它的元素呢 例如：
+
+```python
+new_nums=nums[:]
+nums[1:3]=[23,22]
+
+print(new_nums)
+print(nums)
+
+
+```
+
+我们可以看一下运行后代码的结果是否与我们预想的一样，如果不一样，思考一下为什么
+
+
+2.切片底层原理
+
+Python 列表底层是**连续的内存数组**。每个元素存在内存里，有自己的位置（索引）。
+切片本质就是：**告诉 Python 从哪块内存开始、到哪块结束、隔几个取。
+
+**`nums[1:4]`：标记内存中 1、2、3** 
+这三个位置这是一个 **“区间标记”**，不是真正的数据
+
+（1）取值切片：创建独立副本
+
+``` python
+
+nums = [0,1,2,3,4,5] 
+a = nums[1:4] # 取值
+```
+- Python 看到 `nums[1:4]` 在**等号右边**
+- 它把标记的那一段**复制一份**
+- 放到**新的内存**里
+- 变量 a 指向这个**新列表**
+
+
+（2）赋值切片：直接修改原列表
+
+``` python
+
+nums[1:4] = [99, 88] # 赋值
+
+
+```
+1. Python 看到 `nums[1:4]` 在**等号左边**
+2. 它**不创建新东西**
+3. 它把原列表中 **1~3 索引这一段删掉**
+4. 把右边的新元素**直接填进这个位置**
+
+这叫：**切片替换（slice assignment）**
+
+它不是在改副本，是**直接在原列表的内存上操作**
+
