@@ -4,8 +4,6 @@
   "compilerOptions": {
     // Basic
     "allowJs": true,
-    // Building for a library
-    "declaration": true,
     // Code runs in the DOM
     "lib": ["es2022", "dom", "dom.iterable"],
     // Type Imports
@@ -18,11 +16,8 @@
       "@/assets/*": ["src/assets/*"],
       "@/components/*": ["src/components/*"],
       "@/layouts/*": ["src/layouts/*"],
-      "@/utils": ["src/utils/index.ts"],
-      "@/utils/*": ["src/utils/*"],
       "@/plugins/*": ["src/plugins/*"],
       "@/pages/*": ["src/pages/*"],
-      "@/types": ["src/types/index.ts"],
       "@/site-config": ["src/site.config.ts"]
     }
   },
