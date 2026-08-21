@@ -1,4 +1,4 @@
-# Heng 的个人博客（sheng-blog）
+# Aurelio的个人博客（sheng-blog）
 
 一个基于 [Astro](https://astro.build/) 与 [astro-theme-pure](https://github.com/cworld1/astro-theme-pure) 主题二次开发、部署在 [Vercel](https://vercel.com/) 上的个人博客。
 
@@ -101,33 +101,9 @@ bun install
 | `bun run pure` | 调用 astro-pure CLI（如 `bun run pure new` 新建文章） |
 | `bun run cache:avatars` | 缓存友链头像到 `public/avatars/` |
 
-## ✍️ 编写内容
 
-### 博客文章
 
-在 `src/content/blog/` 下创建 `.md` 或 `.mdx` 文件（推荐按「目录 + `index.md`」的方式组织，以便放置配图）。
 
-frontmatter 字段（由 `src/content.config.ts` 定义）：
-
-```yaml
----
-title: '文章标题'                 # 必填，最多 60 字符
-description: '文章描述'           # 必填，最多 160 字符
-publishDate: '2026-03-19'        # 必填，发布日期
-updatedDate: '2026-03-19'        # 可选，更新日期
-tags:                            # 可选，标签（自动去重并转为小写）
-  - Python
-  - Lambda
-language: 'Chinese'              # 可选，文章语言
-draft: false                     # 可选，草稿（生产环境会过滤）
-comment: true                    # 可选，是否显示评论
-heroImage:                       # 可选，封面图
-  src: './thumbnail.jpg'
-  color: '#9698C1'               # 可选，文章高亮色
----
-```
-
-> `draft: true` 的文章在开发环境可见、生产环境会被过滤。
 
 ### 主题文档
 
@@ -167,15 +143,7 @@ Astro 自身配置（部署 adapter、站点 `site`、Markdown / Shiki 插件、
 - **RSS**：`src/pages/rss.xml.ts`（博客）与 `src/pages/docs/rss.xml.ts`（文档）
 - **robots.txt**：`src/pages/robots.txt.ts`
 
-## ☁️ 部署
 
-本项目默认使用 Vercel adapter（`@astrojs/vercel`），输出模式为 `output: 'server'`，图片服务使用 `imageService: true`。
-
-在 Vercel 中导入仓库即可部署，构建命令为：
-
-```shell
-bun run build
-```
 
 如需修改站点域名，请将 `astro.config.ts` 中的 `site` 改为你自己的域名。
 

@@ -17,7 +17,7 @@ tags:
 
 language: 'Chinese'
 
-heroImage: { src: 'rain.jpg', color: '#9698C1' }
+heroImage: { src: 'rain.png', color: '#9698C1' }
 
 ---
 
