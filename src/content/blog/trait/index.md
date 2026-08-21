@@ -6,7 +6,7 @@ publishDate: July 24, 2026
 
 updatedDate: 'July 24, 2026'
 
-description: 'Rust通过泛型(generics)实现代码复用，允许使用类型占位符替代具体类型。文章首先通过提取函数消除重复逻辑，然后引入泛型进一步抽象类型。以查找切片最大值为例，先为i32和char类型分别实现函数，再通过泛型<T: PartialOrd>合并为一个通用函数。泛型还可用于结构体定义，如Point<T>存储同类型坐标。泛型的核心是类型参数化，但需通过trait约束明确类型能力，在通用性和功能间取得平衡。'
+description: 'Rust通过泛型(generics)实现代码复用，允许使用类型占位符替代具体类型。'
 
 tags:
 
