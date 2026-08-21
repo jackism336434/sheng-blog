@@ -6,6 +6,7 @@
 
 > 本仓库为 `astro-theme-pure` 的 fork/二次开发版本，在保留主题原有能力的基础上，按个人需求改造了首页、关于页、项目页、友链页与评论系统等内容。
 
+博客地址：Aurelio-blog[https://sheng-blog-pure.vercel.app/]
 ## ✨ 特性
 
 - 🚀 基于 Astro 5，构建快速、性能优秀
