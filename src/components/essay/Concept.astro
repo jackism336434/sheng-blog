@@ -1,0 +1,13 @@
+---
+interface Props {
+  term: string
+  zh: string
+}
+const { term, zh } = Astro.props
+---
+
+<aside class='essay-concept' aria-label={`概念：${zh}`}>
+  <p class='essay-label' lang='en'>{term}</p>
+  <p class='essay-concept-term'><dfn>{zh}</dfn></p>
+  <slot />
+</aside>

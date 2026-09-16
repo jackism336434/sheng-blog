@@ -1,0 +1,91 @@
+---
+import type { MarkdownHeading } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+import config from 'virtual:config'
+
+import { ArticleBottom, Copyright } from 'astro-pure/components/pages'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { Comment, PageInfo } from '@/components/waline'
+
+import '@/assets/styles/essay.css'
+import 'katex/dist/katex.min.css'
+
+interface Props {
+  post: CollectionEntry<'blog'>
+  posts: CollectionEntry<'blog'>[]
+  headings: MarkdownHeading[]
+}
+
+const {
+  post: { id, data },
+  posts,
+  headings
+} = Astro.props
+const { title, description, publishDate, updatedDate, heroImage, draft, comment } = data
+const ogImage = heroImage
+  ? typeof heroImage.src === 'string'
+    ? heroImage.src
+    : heroImage.src.src
+  : config.socialCard
+const sections = headings.filter(({ depth }) => depth === 2)
+const dateLabel = new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC'
+})
+---
+
+<BaseLayout
+  appearance='essay'
+  meta={{ title, description, ogImage, articleDate: (updatedDate ?? publishDate).toISOString() }}
+>
+  <main class='essay-page' id='essay-top'>
+    <div class='essay-meta'>
+      <a href='/blog' aria-label='返回博客列表'>← 全部文章</a>
+      <span
+        >思想随笔 <span aria-hidden='true'> / </span>
+        <time datetime={publishDate.toISOString()}>{dateLabel.format(publishDate)}</time></span
+      >
+    </div>
+
+    {
+      sections.length > 0 && (
+        <nav class='essay-toc' aria-label='文章目录'>
+          <span class='essay-label'>阅读路径</span>
+          <ol>
+            {sections.map(({ slug, text }, index) => (
+              <li>
+                <a href={`#${slug}`}>
+                  <span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
+                  {text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <article class='essay-body' lang='zh-CN' aria-label={title}>
+      <slot />
+    </article>
+
+    <footer class='essay-end'>
+      <a href='#essay-top'>回到开篇 ↑</a>
+      {
+        updatedDate && (
+          <span>
+            更新于 <time datetime={updatedDate.toISOString()}>{dateLabel.format(updatedDate)}</time>
+          </span>
+        )
+      }
+    </footer>
+    <div class='essay-bottom'>
+      {!draft && comment && <PageInfo comment />}
+      <Copyright {data} />
+      <ArticleBottom collections={posts} {id} class='mt-6' />
+      {!draft && comment && <Comment class='mt-6' />}
+    </div>
+  </main>
+</BaseLayout>

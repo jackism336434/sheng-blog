@@ -5,10 +5,12 @@ import type { CollectionEntry } from 'astro:content'
 // Plugin styles
 import 'katex/dist/katex.min.css'
 
+import config from 'virtual:config'
+
 import { MediumZoom } from 'astro-pure/advanced'
 import { ArticleBottom, Copyright, Hero, TOC } from 'astro-pure/components/pages'
-import config from 'virtual:config'
 import PageLayout from '@/layouts/ContentLayout.astro'
+import EssayPost from '@/layouts/EssayPost.astro'
 import { Comment, PageInfo } from '@/components/waline'
 
 interface Props {
@@ -44,31 +46,38 @@ const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
 const primaryColor = data.heroImage?.color ?? 'hsl(var(--primary) / var(--un-text-opacity))'
 ---
 
-<PageLayout
-  meta={{ articleDate, description, ogImage: socialImage, title }}
-  highlightColor={primaryColor}
-  back='/blog'
->
-  {!!headings.length && <TOC {headings} slot='sidebar' />}
+{
+  data.essay ? (
+    <EssayPost post={Astro.props.post} {posts} {headings}>
+      <slot />
+    </EssayPost>
+  ) : (
+    <PageLayout
+      meta={{ articleDate, description, ogImage: socialImage, title }}
+      highlightColor={primaryColor}
+      back='/blog'
+    >
+      {!!headings.length && <TOC {headings} slot='sidebar' />}
 
-  <Hero {data} {remarkPluginFrontmatter} slot='header'>
-    <Fragment slot='description'>
-      {!isDraft && enableComment && <PageInfo comment class='mt-1' />}
-    </Fragment>
-  </Hero>
+      <Hero {data} {remarkPluginFrontmatter} slot='header'>
+        <Fragment slot='description'>
+          {!isDraft && enableComment && <PageInfo comment class='mt-1' />}
+        </Fragment>
+      </Hero>
 
-  <slot />
+      <slot />
 
-  <Fragment slot='bottom'>
-    {/* Copyright */}
-    <Copyright {data} />
-    {/* Article recommend */}
-    <ArticleBottom collections={posts} {id} class='mt-3 sm:mt-6' />
-    { /* Comment */
-    !isDraft && enableComment && <Comment class='mt-3 sm:mt-6' />}
-  </Fragment>
+      <Fragment slot='bottom'>
+        {/* Copyright */}
+        <Copyright {data} />
+        {/* Article recommend */}
+        <ArticleBottom collections={posts} {id} class='mt-3 sm:mt-6' />
+        {/* Comment */ !isDraft && enableComment && <Comment class='mt-3 sm:mt-6' />}
+      </Fragment>
 
-  <slot name='bottom-sidebar' slot='bottom-sidebar' />
-</PageLayout>
+      <slot name='bottom-sidebar' slot='bottom-sidebar' />
+    </PageLayout>
+  )
+}
 
-{config.integ.mediumZoom.enable && <MediumZoom />}
+{!data.essay && config.integ.mediumZoom.enable && <MediumZoom />}

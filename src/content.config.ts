@@ -1,5 +1,5 @@
-import { glob } from 'astro/loaders'
 import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
 
 function removeDupsAndLowerCase(array: string[]) {
   if (!array.length) return array
@@ -11,7 +11,7 @@ function removeDupsAndLowerCase(array: string[]) {
 // Define blog collection
 const blog = defineCollection({
   // Load Markdown and MDX files in the `src/content/blog/` directory.
-  loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
+  loader: glob({ base: './src/content/blog', pattern: ['**/*.{md,mdx}', '!**/design.md'] }),
   // Required
   schema: ({ image }) =>
     z.object({
@@ -34,6 +34,8 @@ const blog = defineCollection({
         .optional(),
       tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
       language: z.string().optional(),
+      // Opt-in editorial layout; regular posts retain their existing presentation.
+      essay: z.boolean().default(false),
       draft: z.boolean().default(false),
       // Special fields
       comment: z.boolean().default(true)

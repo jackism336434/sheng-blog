@@ -1,0 +1,41 @@
+---
+import katex from 'katex'
+
+interface Props {
+  label: string
+  formula: string
+  terms?: [string, string][]
+}
+const { label, formula, terms = [] } = Astro.props
+// Render trusted, author-provided TeX at build time; MathML supplies accessible math.
+const math = katex.renderToString(formula, {
+  displayMode: true,
+  output: 'htmlAndMathml',
+  throwOnError: true,
+  trust: false
+})
+---
+
+<figure class='essay-equation essay-wide'>
+  <figcaption class='essay-label'>{label}</figcaption>
+  <div
+    class='essay-math'
+    tabindex='0'
+    role='region'
+    aria-label={`${label}，公式可横向滚动`}
+    set:html={math}
+  />
+  {
+    terms.length > 0 && (
+      <dl class='essay-equation-terms'>
+        {terms.map(([term, meaning]) => (
+          <div>
+            <dt lang='en'>{term}</dt>
+            <dd>{meaning}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+  <slot />
+</figure>

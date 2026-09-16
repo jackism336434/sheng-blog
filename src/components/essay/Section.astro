@@ -1,0 +1,14 @@
+---
+interface Props {
+  index: string
+  kicker: string
+}
+const { index, kicker } = Astro.props
+---
+
+<!-- Keep the Markdown h2 in the slot so Astro can extract it for the TOC. -->
+<header class='essay-section'>
+  <span class='essay-section-index' aria-hidden='true'>{index}</span>
+  <p class='essay-label' lang='en'>{kicker}</p>
+  <slot />
+</header>

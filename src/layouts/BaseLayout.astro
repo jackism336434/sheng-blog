@@ -12,11 +12,13 @@ import '@/assets/styles/app.css'
 interface Props {
   meta: SiteMeta
   highlightColor?: string
+  appearance?: 'essay'
 }
 
 const {
   meta: { articleDate, description = config.description, ogImage, title },
   highlightColor,
+  appearance,
   ...props
 } = Astro.props
 ---
@@ -27,7 +29,11 @@ const {
     <ThemeProvider />
   </head>
 
-  <body class='flex justify-center bg-background text-foreground' {...props}>
+  <body
+    class='flex justify-center bg-background text-foreground'
+    data-appearance={appearance}
+    {...props}
+  >
     {
       highlightColor && (
         <div

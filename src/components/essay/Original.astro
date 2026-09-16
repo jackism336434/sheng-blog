@@ -1,0 +1,14 @@
+---
+interface Props {
+  label?: string
+}
+const { label = '本节英文原文' } = Astro.props
+---
+
+<details class='essay-original'>
+  <summary
+    ><span>{label}</span><span class='essay-original-hint' lang='en'>Original English</span
+    ></summary
+  >
+  <div lang='en'><slot /></div>
+</details>

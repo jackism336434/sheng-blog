@@ -1,0 +1,56 @@
+---
+type Level = '高' | '低'
+interface Props {
+  items: {
+    era: string
+    subject: string
+    leverage: Level
+    coordination: Level
+    outcome: string
+  }[]
+}
+const { items } = Astro.props
+---
+
+<figure class='essay-progression essay-wide'>
+  <figcaption><span class='essay-label'>杠杆与协调</span><span>三种社会处境</span></figcaption>
+  <ol>
+    {
+      items.map((item, index) => (
+        <li>
+          <span class='essay-label' aria-hidden='true'>
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <h3>{item.era}</h3>
+          <p class='essay-progression-subject'>{item.subject}</p>
+          <dl>
+            <div>
+              <>
+                <dt>物质杠杆</dt>
+                <dd>{item.leverage}</dd>
+              </>
+              <span
+                class:list={['essay-bar', { 'is-high': item.leverage === '高' }]}
+                aria-hidden='true'
+              />
+            </div>
+            <div>
+              <>
+                <dt>协调能力</dt>
+                <dd>{item.coordination}</dd>
+              </>
+              <span
+                class:list={['essay-bar', { 'is-high': item.coordination === '高' }]}
+                aria-hidden='true'
+              />
+            </div>
+          </dl>
+          <p class='essay-progression-outcome'>{item.outcome}</p>
+        </li>
+      ))
+    }
+  </ol>
+  <p class='essay-figure-note'>
+    论证示意，非历史数据。后 AI 一栏假设通信仍然畅通；监控与压制还可能进一步削弱协调能力。
+  </p>
+</figure>

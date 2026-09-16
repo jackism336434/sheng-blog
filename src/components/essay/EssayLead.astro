@@ -1,0 +1,19 @@
+---
+interface Props {
+  eyebrow: string
+  title: string | string[]
+}
+const { eyebrow, title } = Astro.props
+---
+
+<header class='essay-lead'>
+  <p class='essay-label' lang='en'>{eyebrow}</p>
+  <h1>
+    {
+      Array.isArray(title)
+        ? title.map((line) => <span class='essay-title-line'>{line}</span>)
+        : title
+    }
+  </h1>
+  <div class='essay-deck'><slot /></div>
+</header>
